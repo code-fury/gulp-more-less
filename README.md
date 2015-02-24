@@ -5,6 +5,11 @@ more-css and less are bundled into this gulp plugin.
 
 **more-css** is a minifying css tool. It by far has the best performance among other minifying tools. Benhcmark can be found here: http://goalsmashers.github.io/css-minification-benchmark/
 
+## Installation
+```sh
+npm install gulp-more-less
+```
+
 ## Syntax
 ```javascript
 moreLess({
