@@ -1,6 +1,6 @@
 {
   "name": "gulp-more-less",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "More-Css and Less plugin for gulp",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,11 @@
     "gulp"
   ],
   "author": "code-fury",
-  "license": "BSD-2-Clause",
+  "license": "Apacache License 2.0",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/code-fury/gulp-more-less"
+  },
   "dependencies": {
     "less": "~2.4.0",
     "more-css": "~0.9.1",
