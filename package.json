@@ -16,10 +16,12 @@
   "dependencies": {
     "less": "~2.4.0",
     "more-css": "~0.9.1",
-    "gulp": "~3.8.11",
     "map-stream": "0.0.5",
     "wait.for": "~0.6.6",
     "vinyl": "~0.4.6",
     "lodash": "~3.3.0"
+  },
+  "devDependencies": {
+    "gulp": "~3.8.11"
   }
 }
