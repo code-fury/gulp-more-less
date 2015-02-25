@@ -10,6 +10,12 @@ gulp.task('test_less_more', function() {
         .pipe(gulp.dest("./build"))
 })
 
+gulp.task('test_different_path', function() {
+    gulp.src("./*.less")
+        .pipe(moreLess({less:true, more:true}))
+        .pipe(gulp.dest("./build"))
+})
+
 gulp.task('test_src_map_inline', function() {
     gulp.src("./css/*.less")
         .pipe(moreLess({less:true,lessOpts: {sourceMap: true, sourceMapFileInline: true}}))

@@ -10,6 +10,7 @@ var fs = require("fs")
 var _ = require("lodash")
 var path = require("path")
 var gutil = require("gulp-util")
+var cwd = process.cwd()
 function lessWrapper(input, options, cb) {
     less.render(input, options, function (error, output) {
         if(error != undefined) {
@@ -39,6 +40,7 @@ var moreLess = function (opts) {
             if (lessOutput.error != undefined) {
                 that.push(file)
                 var error = new gutil.PluginError('gulp-more-css error', lessOutput.error)
+                process.chdir(cwd)
                 cb(error, lessOutput)
                 return
             }
@@ -54,6 +56,7 @@ var moreLess = function (opts) {
             }
             file.contents = new Buffer(output, "utf8")
             that.push(createNewCssFile(file))
+            process.chdir(cwd)
             cb()
         }
         if (options.less === true) {

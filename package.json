@@ -1,6 +1,6 @@
 {
   "name": "gulp-more-less",
-  "version": "0.0.5",
+  "version": "0.0.5.1",
   "description": "More-Css and Less plugin for gulp",
   "main": "index.js",
   "scripts": {
