@@ -3,7 +3,7 @@
  */
 var less = require("less")
 var more = require("more-css")
-var map = require("map-stream")
+var through = require("through2")
 var wait = require("wait.for")
 var File = require("vinyl")
 var fs = require("fs")
@@ -25,8 +25,9 @@ function createNewCssFile(file) {
 
 var moreLess = function (opts) {
     var options = (opts == undefined) ? {} : opts
-    return map(function (file, cb) {
+    return through.obj(function (file, enc, cb) {
         var content = file.contents.toString("utf8")
+        var that = this
         function lessFiber(lessOpts, input) {
             var lessOutput = wait.for(lessWrapper, input, lessOpts)
             var output = lessOutput.css
@@ -41,7 +42,8 @@ var moreLess = function (opts) {
                 }
             }
             file.contents = new Buffer(output, "utf8")
-            cb(null, createNewCssFile(file))
+            that.push(createNewCssFile(file))
+            cb()
         }
         if (options.less === true) {
             var inputOpts = (opts.lessOpts == undefined )? {} : opts.lessOpts
@@ -57,7 +59,8 @@ var moreLess = function (opts) {
             if (options.more == true) {
                 var output = more.compress(content)
                 file.contents = new Buffer(output, "utf8")
-                cb(null, createNewCssFile(file))
+                this.push(createNewCssFile(file))
+                cb()
             }
         }
     })

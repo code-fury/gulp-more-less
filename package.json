@@ -13,17 +13,17 @@
   ],
   "author": "code-fury",
   "license": "Apacache License 2.0",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/code-fury/gulp-more-less"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/code-fury/gulp-more-less"
   },
   "dependencies": {
     "less": "~2.4.0",
+    "lodash": "~3.3.0",
     "more-css": "~0.9.1",
-    "map-stream": "0.0.5",
-    "wait.for": "~0.6.6",
+    "through2": "^0.6.3",
     "vinyl": "~0.4.6",
-    "lodash": "~3.3.0"
+    "wait.for": "~0.6.6"
   },
   "devDependencies": {
     "gulp": "~3.8.11"
