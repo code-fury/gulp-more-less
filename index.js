@@ -8,6 +8,7 @@ var wait = require("wait.for")
 var File = require("vinyl")
 var fs = require("fs")
 var _ = require("lodash")
+var path = require("path")
 function lessWrapper(input, options, cb) {
     less.render(input, options, function (error, output) {
         cb(error, output)
@@ -29,6 +30,7 @@ var moreLess = function (opts) {
         var content = file.contents.toString("utf8")
         var that = this
         function lessFiber(lessOpts, input) {
+            process.chdir(path.dirname(file.path))
             var lessOutput = wait.for(lessWrapper, input, lessOpts)
             var output = lessOutput.css
             if (opts.more == true) {
@@ -36,7 +38,6 @@ var moreLess = function (opts) {
             }
             if(lessOutput.map != undefined) {
                 if(lessOpts.sourceMapPath != undefined) {
-                    console.log(lessOpts.sourceMapPath)
                     var mapFileName = _.trimRight(lessOpts.sourceMapPath, "/") + "/" + file.relative.split(".")[0] + ".map"
                     fs.writeFileSync(mapFileName, lessOutput.map)
                 }
