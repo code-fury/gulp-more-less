@@ -9,9 +9,13 @@ var File = require("vinyl")
 var fs = require("fs")
 var _ = require("lodash")
 var path = require("path")
+var gutil = require("gulp-util")
 function lessWrapper(input, options, cb) {
     less.render(input, options, function (error, output) {
-        cb(error, output)
+        if(error != undefined) {
+            output = {error: error}
+        }
+        cb(null, output)
     })
 }
 
@@ -32,6 +36,12 @@ var moreLess = function (opts) {
         function lessFiber(lessOpts, input) {
             process.chdir(path.dirname(file.path))
             var lessOutput = wait.for(lessWrapper, input, lessOpts)
+            if (lessOutput.error != undefined) {
+                that.push(file)
+                var error = new gutil.PluginError('gulp-more-css error', lessOutput.error)
+                cb(error, lessOutput)
+                return
+            }
             var output = lessOutput.css
             if (opts.more == true) {
                 output = more.compress(output)

@@ -18,6 +18,7 @@
     "url": "https://github.com/code-fury/gulp-more-less"
   },
   "dependencies": {
+    "gulp-util": "^3.0.4",
     "less": "~2.4.0",
     "lodash": "~3.3.0",
     "more-css": "~0.9.1",
